@@ -1,0 +1,73 @@
+<form [formGroup]="form">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="vin">Código Vin *</label>
+      <input type="text" class="form-control" id="vin" minlength="20" maxlength="20" formControlName="vin"
+        [ngClass]="{'is-invalid': submitted && hasError('vin')}"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('vin')">
+        Código Vin inválido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="odometer">Odômetro (Km) *</label>
+      <input type="text" class="form-control" id="odometer" formControlName="odometer" [ngClass]="{'is-invalid': submitted && hasError('odometer')}"/>
+      <div class="invalid-feedback" *ngIf="hasError('odometer')">
+        Odômetro inválido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tirePressure">Pressão dos pneus *</label>
+      <input type="text" class="form-control" id="tirePressure" formControlName="tirePressure" [ngClass]="{'is-invalid': submitted && hasError('tirePressure')}"/>
+      <div class="invalid-feedback" *ngIf="hasError('tirePressure')">
+        Pressão dos pneus inválido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="status">Status do veículo *</label>
+      <input type="text" class="form-control" id="status" formControlName="status" [ngClass]="{'is-invalid': submitted && hasError('status')}"/>
+      <div class="invalid-feedback" *ngIf="hasError('status')">
+        Status inválido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="batteryStatus">Status da bateria *</label>
+      <input type="text" class="form-control" id="batteryStatus" formControlName="batteryStatus" [ngClass]="{'is-invalid': submitted && hasError('batteryStatus')}"/>
+      <div class="invalid-feedback" *ngIf="hasError('batteryStatus')">
+        Status da bateria inválido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="fuelLevel">Nivel de Combustivel (%) *</label>
+      <input type="text" class="form-control" id="fuelLevel" formControlName="fuelLevel" [ngClass]="{'is-invalid': submitted && hasError('fuelLevel')}"/>
+      <div class="invalid-feedback" *ngIf="hasError('fuelLevel')">
+        Nivel de Combustivel inválido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lat">Latitude *</label>
+      <input type="text" class="form-control" id="lat" formControlName="lat" [ngClass]="{'is-invalid': submitted && hasError('lat')}"/>
+      <div class="invalid-feedback" *ngIf="hasError('lat')">
+        Lat inválido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="longi">Longitude *</label>
+      <input type="text" class="form-control" id="longi" formControlName="longi" [ngClass]="{'is-invalid': submitted && hasError('longi')}"/>
+      <div class="invalid-feedback" *ngIf="hasError('longi')">
+        Long inválido.
+      </div>
+    </div>
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{closeBtnName}}</button>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">{{saveBtnName}}</button>
+  </div>
+</form>

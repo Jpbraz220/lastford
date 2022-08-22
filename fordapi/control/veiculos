@@ -1,0 +1,44 @@
+const Veiculo = require('../models/veiculos')
+
+module.exports = app => {
+    //Lista todos os modelos dos veiculos
+    app.get('/vehicle', (req, res) => {
+        Veiculo.listaModeloVeiculo(res);
+    } );
+
+    //Listar todos os Dados dos veiculos
+    app.get('/vehicleData', (req, res) => {
+        Veiculo.lista(res);
+    } );
+
+    //Buscar o Dado do veiculo
+    app.get('/vehicleData/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+        console.log('id - ', id)
+        Veiculo.buscaPorId(id,res);
+    });
+
+    //Criar o Dado do veiculo
+    app.post('/vehicleData', (req, res) => {
+        const veiculo = req.body
+        console.log('veiculo', veiculo)
+        
+        Veiculo.adiciona(veiculo, res)
+    });
+
+    //Atualizar o Dado do veiculo
+    app.patch('/vehicleData/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+        const valores = req.body
+    
+        Veiculo.altera(id, valores, res)
+    });
+
+    //Deletar o Dado do veiculo
+    app.delete('/vehicleData/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+        console.log('id delete - ', id)
+
+        Veiculo.deleta(id, res)
+    });
+}

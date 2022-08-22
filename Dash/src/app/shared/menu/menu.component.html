@@ -1,0 +1,15 @@
+<div [ngClass]="{ 'active-menu': mostraMenu }">
+  <div class="menu-bar">
+    <img src="assets/img/ford.png" alt="Logo Ford" class="img-fluid">
+    <i
+      class="fa fa-window-close"
+      (click)="abreMenu()"
+      (keyup.space)="abreMenu()"
+    >
+    </i>
+    <ng-content></ng-content>
+  </div>
+
+  <div class="overlay" (click)="abreMenu()"></div>
+</div>
+

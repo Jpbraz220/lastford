@@ -1,0 +1,38 @@
+.title{
+    color: #1a79d7;
+    margin-bottom: 40px;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+}
+
+.dropdown-car{
+    width: 100%;
+    min-height: 35px;
+    margin-top: 5px;
+    padding-left: 10px;
+}
+
+.subtitle{
+    color: #1a79d7;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+}
+
+.unid{
+    font-size: 12px;
+}
+
+.bg-color{
+    background-color: #0b4887;
+    color: #ffffff;
+}
+
+.btn:disabled {
+    background-color: #a0a6ab;
+    cursor: not-allowed !important;
+}

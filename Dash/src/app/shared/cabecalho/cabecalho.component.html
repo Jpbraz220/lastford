@@ -1,0 +1,37 @@
+<header>
+  <nav class="navbar navbar-light bg-white">
+
+      <a class="navbar-brand">
+        <i
+          class="fa fa-bars mr-2"
+          style="margin-left: 2vh; cursor: pointer;"
+          (click)="menu.abreMenu()"
+          (keyup.space)="menu.abreMenu()"
+        >
+        </i>
+      </a>
+  
+      <app-menu #menu>
+        <ul class="list-unstyled">
+          <li [routerLinkActive]="['active']" [routerLink]="['/home']">
+            <a>Home</a>
+          </li>
+          <li [routerLinkActive]="['active']" [routerLink]="['/dashboard']">
+            <a>Dashboard</a>
+          </li>
+        </ul>
+      </app-menu>
+  
+      <div *ngIf="user$ | async as user">
+        <div *ngIf="user.name" class="dropdown">
+          <button class="dropbtn ml-5"><i class="fa fa-user-circle"></i></button>
+          <div class="dropdown-content">
+            <a>{{user.name | titlecase}}</a>
+            <a (click) ="logout()">Logout</a>
+          </div>
+        </div>
+      </div>
+
+  </nav>
+</header>
+

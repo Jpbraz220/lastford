@@ -1,0 +1,82 @@
+<app-cabecalho></app-cabecalho>
+<form [formGroup]="form" class="container">
+    <h2 class="text-center title">{{title}}</h2>
+    <div class="cards">
+        <app-card title="Veículo">
+
+            <div>
+              <select name="drop-car" id="drop-car" class="dropdown-car" formControlName="vehicle" (change)="getSubCategories($event)">
+                <option value="null"></option>
+                <option *ngFor="let item of vehicles$ | async" [value]="item.id" >{{item.vehicle}}</option>
+              </select>
+            </div>
+
+        </app-card>
+        <app-card title="Total de Vendas">
+            <p class="card-text subtitle">{{vehicle?.volumetotal || 0}}</p>
+            <p class="unid">Unid.</p>
+        </app-card>
+        <app-card title="Conectados">
+            <p class="card-text subtitle">{{vehicle?.connected || 0}}</p>
+            <p class="unid">Unid.</p>
+        </app-card>
+        <app-card title="Update Software">
+            <p class="card-text subtitle">{{vehicle?.softwareUpdates || 0}}</p>
+            <p class="unid">Unid.</p>
+        </app-card>
+    </div>
+    <div [class.show]="vehicle" class="text-center my-3 d-flex flex-row">
+        <img *ngIf="vehicle" [src]="getImage()" [alt]="vehicle.vehicle" class="img-fluid" style="width: 50%; margin-top: 20px; margin-bottom: 20px;">
+        <div style="display: block;">
+          <h2 *ngIf="vehicle">Conectados</h2>
+          <canvas #myChart></canvas>
+        </div>
+        <div style="display: block;">
+          <h2 *ngIf="vehicle">Update Software</h2>
+          <canvas #myChart2></canvas>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="bg-color">
+          <tr>
+            <th scope="col">Código - Vin</th>
+            <th scope="col">Odômetro</th>
+            <th scope="col">Nível de Combustível</th>
+            <th scope="col">Status</th>
+            <th scope="col">Lat.</th>
+            <th scope="col">Long.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <input type="text" formControlName="vehicleDataID"/>&nbsp;
+              <button type="button" class="btn btn-light" (click)="onCreate()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg></button>&nbsp;
+              <button type="button" class="btn btn-light" [disabled]="!vehicleData" (click)="onEdit(vehicleData?.id)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+              </svg></button>&nbsp;
+              <button type="button" class="btn btn-light" [disabled]="!vehicleData" (click)="onDelete(vehicleData?.id)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg></button>
+            </th>
+            <td><strong>{{vehicleData?.odometer || 0}} Km</strong></td>
+            <td><strong>{{vehicleData?.fuelLevel || 0}} %</strong></td>
+            <td><strong>{{vehicleData?.status || 0}}</strong></td>
+            <td><strong>{{vehicleData?.lat || 0}}</strong></td>
+            <td><strong>{{vehicleData?.longi || 0}}</strong></td>
+          </tr>
+        </tbody>
+        <tfoot class="bg-color">
+            <td><p></p></td>
+            <td><p></p></td>
+            <td><p></p></td>
+            <td><p></p></td>
+            <td><p></p></td>
+            <td><p></p></td>
+        </tfoot>
+      </table>
+    </form>

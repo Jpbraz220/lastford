@@ -1,0 +1,31 @@
+<h1>
+  <img class="img-fluid" style="width: 30%; margin-left: 35%; margin-right: 35%; padding-bottom: 80px;" src="assets/img/ford.png" alt="Logo da ford">
+</h1>
+<h4 class="text-center" style="color: green;">Boas-vindas</h4>
+
+<form class="form mt-4" (ngSubmit)="login()" #loginForm="ngForm">
+  <div class="form-group" style="padding-bottom: 8px;padding-left: 10%; padding-right: 10%;">
+    <input class="form-control" placeholder="Nome do usuário" [(ngModel)]="usuario" name="usuario"
+    #campoUsuario="ngModel"
+    required>
+    <app-mensagem 
+      *ngIf="campoUsuario.invalid && campoUsuario.touched"
+      mensagem="Campo de usuário é obrigatório">
+    </app-mensagem>
+  </div>
+
+  <div class="form-group" style="padding-bottom: 20px;padding-left: 10%; padding-right: 10%;">
+    <input type="password" class="form-control" placeholder="Sua senha" [(ngModel)]="senha" name="senha"
+    #campoSenha="ngModel"
+    required>
+    <app-mensagem 
+      *ngIf="campoSenha.invalid && campoSenha.touched"
+      mensagem="Campo de senha é obrigatório">
+    </app-mensagem>
+  </div>
+
+<div class="text-center">
+  <button type="submit" class="btn btn-primary btn-block" style="width:80%; padding-bottom: 8px;" 
+  [disabled]="loginForm.invalid">Login</button>
+</div>
+</form>

@@ -31,7 +31,12 @@ class Veiculos {
 }
 
     listaModeloVeiculo(res) {
-        const sql = 'SELECT * FROM modelos_veiculos'
+        const sql = `SELECT 
+        id,
+        vehicle, 
+        volumetotal, 
+        connected, 
+        softwareUpdates FROM modelos_veiculos`
 
         conexao.query(sql, (erro, resultados) => {
             if(erro) {
@@ -42,7 +47,16 @@ class Veiculos {
     }
 
     lista(res) {
-        const sql = 'SELECT * FROM dados_veiculos'
+        const sql = `SELECT 
+        id,
+        vin, 
+        odometer, 
+        tirePressure, 
+        status, 
+        batteryStatus, 
+        fuelLevel, 
+        lat, 
+        longi FROM dados_veiculos`
         console.log('sql')
 
         conexao.query(sql, (erro, resultados) => {
@@ -55,7 +69,16 @@ class Veiculos {
     
     
     buscaPorId(id,res) {
-        const sql = `SELECT * FROM dados_veiculos WHERE id=${id}`;
+        const sql = `SELECT 
+        id,
+        vin, 
+        odometer, 
+        tirePressure, 
+        status, 
+        batteryStatus, 
+        fuelLevel, 
+        lat, 
+        longi FROM dados_veiculos WHERE id=${id}`;
 
         conexao.query(sql, (erro,resultados) => {
             const veiculo = resultados[0];

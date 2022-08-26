@@ -9,6 +9,7 @@ import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { Chart, registerables } from 'chart.js';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
+import { R3TargetBinder } from '@angular/compiler';
 
 Chart.register(...registerables)
 
@@ -41,7 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   @ViewChild("myChart2", { static: true}) myChart2!: ElementRef;
 
   bsModalRef?: BsModalRef;
-  
+
   form = new FormGroup({
     vehicle: new FormControl(null),
     vehicleDataID: new FormControl(null)
@@ -77,7 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
         }
       );
 
-      
+
   }
 
   treatCode(value: string): number | undefined{
@@ -121,10 +122,14 @@ export class DashboardComponent implements OnInit, OnDestroy{
       console.log('this.vehicle', this.vehicle)
       let result = this.vehicle ? this.vehicle.connected*100/this.vehicle.volumetotal : 0;
       let result2 = this.vehicle ? this.vehicle.softwareUpdates*100/this.vehicle.volumetotal : 0;
+      let resultp = Math.round(result).toFixed(2);
+      let result2p = Math.round(result2).toFixed(2);
+
       console.log('result', result)
       this.chartExample1 = new Chart(this.myChart.nativeElement, {
           type: 'doughnut',
           data: {
+            labels: [`${resultp}%`],
             datasets: [{
               label: 'My First Dataset',
               data: [result, 100-result],
@@ -132,13 +137,21 @@ export class DashboardComponent implements OnInit, OnDestroy{
                 'rgb(0, 16, 90)',
                 '#dcdcdc'
               ],
-              hoverOffset: 4
+              hoverOffset: 4,
             }]
-          }
+          },
+          options: {
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {boxWidth: 0, boxHeight: 0, color: 'rgb(0, 16, 90)', font: {size: 18, weight: 'bold',}  }
+                }
+            }}
         });
         this.chartExample2 = new Chart(this.myChart2.nativeElement, {
           type: 'doughnut',
           data: {
+            labels: [`${result2p}%`],
             datasets: [{
               label: 'My First Dataset',
               data: [result2, 100-result2],
@@ -148,7 +161,14 @@ export class DashboardComponent implements OnInit, OnDestroy{
               ],
               hoverOffset: 4
             }]
-          }
+          },
+          options: {
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {boxWidth: 0, boxHeight: 0, color: 'rgb(0, 16, 90)', font: {size: 18, weight: 'bold',}  }
+                }
+            }}
         });
     })
   }
@@ -202,7 +222,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
         vehicleDataID: vehicleDataID
       }
     };
-    
+
 
     this.subscriptions.push(
       this.modalService.onHide.subscribe((reason: string | any) => {
@@ -220,6 +240,6 @@ export class DashboardComponent implements OnInit, OnDestroy{
 
     this.bsModalRef = this.modalService.show(ModalConfirmComponent, initialState);
   }
-    
+
 
 }

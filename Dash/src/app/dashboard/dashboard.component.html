@@ -26,7 +26,7 @@
         </app-card>
     </div>
     <div [class.show]="vehicle" class="text-center my-3 d-flex flex-row">
-        <img *ngIf="vehicle" [src]="getImage()" [alt]="vehicle.vehicle" class="img-fluid" style="width: 50%; margin-top: 20px; margin-bottom: 20px;">
+        <img *ngIf="vehicle" [src]="getImage()" [alt]="vehicle.vehicle" class="img-fluid" style="width: 50%;  margin-top: 20px; margin-bottom: 20px;">
         <div style="display: block;">
           <h2 *ngIf="vehicle">Conectados</h2>
           <canvas #myChart></canvas>

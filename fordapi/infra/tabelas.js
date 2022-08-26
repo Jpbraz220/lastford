@@ -49,7 +49,10 @@ class Tabelas {
             vehicle, 
             volumetotal, 
             connected, 
-            softwareUpdates) SELECT 'Ranger', 2000, 700, 1550 WHERE NOT EXISTS (SELECT * FROM modelos_veiculos WHERE vehicle = 'Ranger')`
+            softwareUpdates) SELECT 'Ranger', 2000, 700, 1550 WHERE NOT EXISTS (SELECT vehicle, 
+                volumetotal, 
+                connected, 
+                softwareUpdates FROM modelos_veiculos WHERE vehicle = 'Ranger')`
         this.conexao.query(sql, erro => {
             if(erro) {
                 console.log(erro)
@@ -60,12 +63,43 @@ class Tabelas {
             vehicle, 
             volumetotal, 
             connected, 
-            softwareUpdates) SELECT 'Mustang', 1000, 500, 750 WHERE NOT EXISTS (SELECT * FROM modelos_veiculos WHERE vehicle = 'Mustang')`
+            softwareUpdates) SELECT 'Mustang', 1000, 500, 750 WHERE NOT EXISTS (SELECT vehicle, 
+                volumetotal, 
+                connected, 
+                softwareUpdates FROM modelos_veiculos WHERE vehicle = 'Mustang')`
         this.conexao.query(sql2, erro => {
             if(erro) {
                 console.log(erro)
             } else {
                 console.log('Tabela Veiculos preenchida com dados default 2')
+    }})
+        const sql3 = `INSERT INTO modelos_veiculos( 
+            vehicle, 
+            volumetotal, 
+            connected, 
+            softwareUpdates) SELECT 'Territory', 4560, 4000, 3050 WHERE NOT EXISTS (SELECT vehicle, 
+                volumetotal, 
+                connected, 
+                softwareUpdates FROM modelos_veiculos WHERE vehicle = 'Territory')`
+        this.conexao.query(sql3, erro => {
+            if(erro) {
+                console.log(erro)
+            } else {
+                console.log('Tabela Veiculos preenchida com dados default 3')
+    }})
+        const sql4 = `INSERT INTO modelos_veiculos( 
+            vehicle, 
+            volumetotal, 
+            connected, 
+            softwareUpdates) SELECT 'Bronco Sport', 7560, 4060, 2050 WHERE NOT EXISTS (SELECT vehicle, 
+                volumetotal, 
+                connected, 
+                softwareUpdates FROM modelos_veiculos WHERE vehicle = 'Bronco Sport')`
+        this.conexao.query(sql4, erro => {
+            if(erro) {
+                console.log(erro)
+            } else {
+                console.log('Tabela Veiculos preenchida com dados default 4')
     }})
 }
 
@@ -99,7 +133,14 @@ class Tabelas {
             batteryStatus, 
             fuelLevel, 
             lat, 
-            longi) SELECT '2FRHDUYS2Y63NHD22454', '23344', '36,36,35,34', 'on', 'Ok', '76','-12,2322', '-35,2314'  WHERE NOT EXISTS (SELECT * FROM dados_veiculos WHERE vin = '2FRHDUYS2Y63NHD22454') `
+            longi) SELECT '2FRHDUYS2Y63NHD22454', '23344', '36,36,35,34', 'on', 'Ok', '76','-12,2322', '-35,2314'  WHERE NOT EXISTS (SELECT vin, 
+                odometer, 
+                tirePressure, 
+                status, 
+                batteryStatus, 
+                fuelLevel, 
+                lat, 
+                longi FROM dados_veiculos WHERE vin = '2FRHDUYS2Y63NHD22454') `
     
         this.conexao.query(sql, erro => {
             if(erro) {
@@ -116,7 +157,14 @@ class Tabelas {
             batteryStatus, 
             fuelLevel, 
             lat, 
-            longi) SELECT '2RFAASDY54E4HDU34874', '130000', '36,34,36,33', 'off', 'Recharge', '19','-12,2322', '-35,2314'  WHERE NOT EXISTS (SELECT * FROM dados_veiculos WHERE vin = '2RFAASDY54E4HDU34874') `
+            longi) SELECT '2RFAASDY54E4HDU34874', '130000', '36,34,36,33', 'off', 'Recharge', '19','-12,2322', '-35,2314'  WHERE NOT EXISTS (SELECT vin, 
+                odometer, 
+                tirePressure, 
+                status, 
+                batteryStatus, 
+                fuelLevel, 
+                lat, 
+                longi FROM dados_veiculos WHERE vin = '2RFAASDY54E4HDU34874') `
     
         this.conexao.query(sql2, erro => {
             if(erro) {
@@ -132,7 +180,14 @@ class Tabelas {
             batteryStatus, 
             fuelLevel, 
             lat, 
-            longi) SELECT '2FRHDUYS2Y63NHD22455', '50000', '36,36,35,34', 'on', 'Ok', '90','-12,2322', '-35,2314'  WHERE NOT EXISTS (SELECT * FROM dados_veiculos WHERE vin = '2FRHDUYS2Y63NHD22455') `
+            longi) SELECT '2FRHDUYS2Y63NHD22455', '50000', '36,36,35,34', 'on', 'Ok', '90','-12,2322', '-35,2314'  WHERE NOT EXISTS (SELECT vin, 
+                odometer, 
+                tirePressure, 
+                status, 
+                batteryStatus, 
+                fuelLevel, 
+                lat, 
+                longi FROM dados_veiculos WHERE vin = '2FRHDUYS2Y63NHD22455') `
         
         this.conexao.query(sql3, erro => {
             if(erro) {
@@ -148,7 +203,14 @@ class Tabelas {
             batteryStatus, 
             fuelLevel, 
             lat, 
-            longi) SELECT '2RFAASDY54E4HDU34875', '10000', '36,34,36,33', 'off', 'Ok', '25','-12,2322', '-35,2314'  WHERE NOT EXISTS (SELECT * FROM dados_veiculos WHERE vin = '2RFAASDY54E4HDU34875') `
+            longi) SELECT '2RFAASDY54E4HDU34875', '10000', '36,34,36,33', 'off', 'Ok', '25','-12,2322', '-35,2314'  WHERE NOT EXISTS (SELECT vin, 
+                odometer, 
+                tirePressure, 
+                status, 
+                batteryStatus, 
+                fuelLevel, 
+                lat, 
+                longi FROM dados_veiculos WHERE vin = '2RFAASDY54E4HDU34875') `
             
         this.conexao.query(sql4, erro => {
                 if(erro) {
